@@ -14,12 +14,24 @@ public class MoveLeft : MonoBehaviour
         float currentX = GetComponent<Transform>().position.x;
         if (currentX <= -15)
         {
-            //transform.position += Vector3.right * 20;
-            transform.position += new Vector3(30, 0, 0);
             var enemy = GetComponent<Enemy>();
+            float startingX = 30f;
+            float startingY = 0f;
+            if (enemy)
+            {
+                startingX = Random.Range(20f, 30f);
+                startingY = Random.Range(-2.5f, 2.5f);
+
+            }
+
+            //float randomY = Random.Range();
+            transform.position += new Vector3(startingX, startingY, 0);
+            //transform.position += new Vector3(30, 0, 0);
             enemy?.respawn();
             var meat = GetComponent<Meat>();
             meat?.respawn();
+            var coin = GetComponent<Coin>();
+            coin?.respawn();
 
             showRandomSprite();
         }

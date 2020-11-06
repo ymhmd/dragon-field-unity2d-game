@@ -36,6 +36,8 @@ public class BlueDragon : MonoBehaviour
         {
             SceneManager.LoadScene("fail");
             lifeHandler.ResetLifes();
+            new CoinHandler().ResetCoins();
+            new KillHandler().ResetKills();
         }
         else
         {
@@ -74,6 +76,9 @@ public class BlueDragon : MonoBehaviour
         var enemy = collider2D.GetComponent<Enemy>();
         var tree = collider2D.GetComponent<Tree>();
         var meat = collider2D.GetComponent<Meat>();
+        var coin = collider2D.GetComponent<Coin>();
+
+        Debug.Log(coin);
 
         if (enemy || tree)
         {
@@ -84,6 +89,12 @@ public class BlueDragon : MonoBehaviour
         {
             lifes = lifeHandler.incrementLifes();
             meat?.die();
+        }
+
+        if (coin) 
+        {
+            coin?.die();
+            new CoinHandler().incrementCoins();
         }
     }
 

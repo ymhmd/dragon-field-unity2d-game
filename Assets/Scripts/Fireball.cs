@@ -7,6 +7,7 @@ public class Fireball : MonoBehaviour
     [SerializeField]
     private Vector2 StartingVelocity;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +17,15 @@ public class Fireball : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         var enemy = collider.GetComponent<Enemy>();
-        if(enemy)
+        float enemyX = collider.GetComponent<Transform>().position.x;
+
+
+        if(enemy && enemyX < 9)
         {
             enemy?.die();
             fireballDisappears();
+
+            new KillHandler().incrementKills();
         }
     }
 
