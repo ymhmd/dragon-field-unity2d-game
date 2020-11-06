@@ -15,6 +15,7 @@ public class LandingPage : MonoBehaviour
     private void OnMouseDown()
     {
         lifeHandler.ResetLifes();
+        new KillHandler().ResetKills();
         SceneManager.LoadScene("gameplay");
     }
 }
